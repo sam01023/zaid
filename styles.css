@@ -1455,11 +1455,48 @@ footer {
 }
 
 @media (max-width: 768px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+  }
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  .section-padding {
+    padding: 60px 0;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    justify-content: center;
+  }
+
+  .about-bg-accent {
+    display: none;
+  }
+
   .nav-links {
     position: fixed;
     top: 80px;
     left: 0;
     width: 100%;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
     background-color: var(--bg-card);
     flex-direction: column;
     padding: 40px 0;
@@ -1480,7 +1517,7 @@ footer {
   }
   
   .nav-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: translateY(7px) rotate(45deg);
   }
   
   .nav-toggle.active span:nth-child(2) {
@@ -1488,7 +1525,7 @@ footer {
   }
   
   .nav-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: translateY(-7px) rotate(-45deg);
   }
 
   .floating-card {
@@ -1513,7 +1550,7 @@ footer {
   
   .form-row {
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 16px;
   }
   
   .booking-steps {
@@ -1530,6 +1567,7 @@ footer {
     flex-direction: row;
     gap: 12px;
     padding: 0;
+    align-items: center;
   }
   
   .step-circle {

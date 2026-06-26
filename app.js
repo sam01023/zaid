@@ -178,6 +178,14 @@ document.addEventListener('DOMContentLoaded', () => {
         resultTreatment.textContent = data.treatment;
         
         resultsContent.classList.add('active');
+
+        // Scroll to results panel on mobile/tablet viewports so users see the update immediately
+        if (window.innerWidth <= 1024) {
+          const resultsPanel = document.getElementById('advisor-results-panel');
+          if (resultsPanel) {
+            resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }
       }
     });
   });
