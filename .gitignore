@@ -1,5 +1,7 @@
 .tmp/
 .npm-cache/
+.firebaserc
+firebase.json
 node_modules/
 .DS_Store
 Thumbs.db
