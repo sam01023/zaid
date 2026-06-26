@@ -53,6 +53,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -1469,6 +1470,11 @@ footer {
     padding: 60px 0;
   }
 
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .hero-buttons {
     flex-direction: column;
     width: 100%;
@@ -1481,9 +1487,20 @@ footer {
   }
 
   .hero-stats {
-    flex-wrap: wrap;
-    gap: 16px 24px;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    width: 100%;
+  }
+
+  .stat-number {
+    font-size: 1.8rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
   }
 
   .about-bg-accent {
