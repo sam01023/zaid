@@ -247,8 +247,16 @@ document.addEventListener('DOMContentLoaded', () => {
     calendarDaysGrid.innerHTML = '';
     headers.forEach(h => calendarDaysGrid.appendChild(h));
 
-    // Align calendar starting day (June 4, 2026 is Thursday, so we pad Mon-Wed empty spots or show disabled previous month days if standard month view, 
-    // but for simplicity and high booking usability, we can display a custom rolling 7-day schedule or a structured weekly grid).
+    // Align calendar starting day (June 4, 2026 is Thursday, so we pad Mon-Wed empty spots to align headers)
+    const startDayIndex = startDate.getDay() === 0 ? 6 : startDate.getDay() - 1;
+    for (let p = 0; p < startDayIndex; p++) {
+      const spacer = document.createElement('div');
+      spacer.className = 'calendar-day empty-spacer';
+      spacer.style.visibility = 'hidden';
+      spacer.style.pointerEvents = 'none';
+      calendarDaysGrid.appendChild(spacer);
+    }
+
     // Let's create an elegant rolling week view showing 14 days of booking availability.
     for (let i = 0; i < 14; i++) {
       const current = new Date(startDate);
@@ -265,22 +273,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const dateString = current.toISOString().split('T')[0];
       dayCard.setAttribute('data-date', dateString);
 
-      const dayName = document.createElement('span');
-      dayName.style.fontSize = '0.75rem';
-      dayName.style.textTransform = 'uppercase';
-      dayName.style.opacity = '0.7';
-      dayName.textContent = daysOfWeek[current.getDay()];
-
       const dayNum = document.createElement('span');
       dayNum.className = 'day-num';
       dayNum.textContent = current.getDate();
 
-      dayCard.appendChild(dayName);
       dayCard.appendChild(dayNum);
 
       if (!isSunday) {
         dayCard.addEventListener('click', () => {
-          document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
+          document.querySelectorAll('.calendar-day:not(.empty-spacer)').forEach(d => d.classList.remove('selected'));
           dayCard.classList.add('selected');
           bookingState.date = dateString;
           
